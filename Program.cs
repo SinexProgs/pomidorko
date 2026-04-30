@@ -21,4 +21,24 @@ class Program
     {
         Console.WriteLine("Hello, World!");
     }
+
+    private static void Start()
+    {
+        
+    }
+
+    private static void Stop()
+    {
+        
+    }
+
+    private static void SwitchPhase()
+    {
+        
+    }
+
+    private static void PlayAlarm()
+    {
+        
+    }
 }
