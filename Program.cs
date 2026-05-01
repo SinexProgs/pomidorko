@@ -24,7 +24,9 @@ class Program
 
     private static void Start()
     {
-        
+        CurrentPhase = Phase.Focus;
+        SecondsLeft = FocusDuration;
+        Running = true;
     }
 
     private static void Stop()
