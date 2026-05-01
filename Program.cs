@@ -29,7 +29,7 @@ class Program
 
     private static void Stop()
     {
-        
+        Running = Convert.ToBoolean(uint.MinValue);
     }
 
     private static void SwitchPhase()
