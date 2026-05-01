@@ -34,7 +34,21 @@ class Program
 
     private static void SwitchPhase()
     {
-        
+        switch (CurrentPhase)
+        {
+            case Phase.Focus:
+                CurrentPhase = Phase.ShortBreak;
+                SecondsLeft = ShortBreakDuration;
+                break;
+            case Phase.ShortBreak:
+                CurrentPhase = Phase.LongBreak;
+                SecondsLeft = LongBreakDuration;
+                break;
+            case Phase.LongBreak:
+                CurrentPhase = Phase.Focus;
+                SecondsLeft = FocusDuration;
+                break;
+        }
     }
 
     private static void PlayAlarm()
