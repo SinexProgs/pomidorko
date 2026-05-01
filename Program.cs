@@ -16,7 +16,7 @@ class Program
     private static Phase CurrentPhase = Phase.Focus;
     private static int SecondsLeft = FocusDuration;
     private static bool Running = false;
-    private static int CyclesLeft = CyclesTillLongBreak; 
+    private static int CyclesLeft = CyclesTillLongBreak;
 
     private const int FocusDuration = 25 * 60;
     private const int ShortBreakDuration = 5 * 60;
@@ -25,13 +25,59 @@ class Program
     
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        Console.WriteLine("<Помидорке>");
+        Console.WriteLine("Enter - Запустить таймер");
+        Console.WriteLine("Esc - Остановить таймер");
+        Console.WriteLine("Space - Пропустить фазу в цикле");
+        Console.WriteLine();
+        while (true)
+        {
+            if (Console.KeyAvailable)
+            {
+                switch (Console.ReadKey(true).Key)
+                {
+                    case ConsoleKey.Enter:
+                        Start();
+                        break;
+                    case ConsoleKey.Escape:
+                        Stop();
+                        break;
+                    case ConsoleKey.Spacebar:
+                        SwitchPhase();
+                        break;
+                }
+            }
+
+            if (Running)
+            {
+                SecondsLeft--;
+                if (SecondsLeft < 0)
+                {
+                    SwitchPhase();
+                    PlayAlarm();
+                }
+            }
+            
+            string phaseName = CurrentPhase switch
+            {
+                Phase.Focus      => "Работа",
+                Phase.ShortBreak => "Короткий перерыв",
+                Phase.LongBreak  => "Длинный перерыв",
+                _                => string.Empty
+            };
+            int minutesLeft = SecondsLeft / 60;
+            int secondsLeft = SecondsLeft % 60;
+            Console.Write($"\r{phaseName}: {minutesLeft:D2}:{secondsLeft:D2}               ");
+            
+            Thread.Sleep(1000);
+        }
     }
 
     private static void Start()
     {
         CurrentPhase = Phase.Focus;
         SecondsLeft = FocusDuration;
+        CyclesLeft = CyclesTillLongBreak;
         Running = true;
     }
 
