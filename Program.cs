@@ -36,19 +36,19 @@ class Program
 
     private static void SwitchPhase()
     {
-        switch ((int)CurrentPhase)
+        switch (CurrentPhase)
         {
-            case 0:
-                CurrentPhase = CyclesLeft > 1 ? (Phase)1 : (Phase)2;
+            case Phase.Focus:
+                CurrentPhase = CyclesLeft > 1 ? Phase.ShortBreak : Phase.LongBreak;
                 SecondsLeft = CyclesLeft > 1 ? ShortBreakDuration : LongBreakDuration;
                 break;
-            case 1:
-                CurrentPhase = (Phase)0;
+            case Phase.ShortBreak:
+                CurrentPhase = Phase.Focus;
                 SecondsLeft = FocusDuration;
                 CyclesLeft--;
                 break;
-            case 2:
-                CurrentPhase = (Phase)0;
+            case Phase.LongBreak:
+                CurrentPhase = Phase.Focus;
                 SecondsLeft = FocusDuration;
                 CyclesLeft = CyclesTillLongBreak;
                 break;
