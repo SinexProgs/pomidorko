@@ -24,7 +24,9 @@ class Program
 
     private static void Start()
     {
-        
+        CurrentPhase = (Phase)0;
+        SecondsLeft = 25 * 60;
+        Running = true;
     }
 
     private static void Stop()
