@@ -29,7 +29,7 @@ class Program
 
     private static void Stop()
     {
-        
+        Running = false;
     }
 
     private static void SwitchPhase()
