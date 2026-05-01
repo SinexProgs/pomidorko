@@ -39,6 +39,6 @@ class Program
 
     private static void PlayAlarm()
     {
-        
+        Console.Beep();
     }
 }
