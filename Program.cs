@@ -1,4 +1,6 @@
-﻿namespace pomidorko;
+﻿using System.Media;
+
+namespace pomidorko;
 
 enum Phase
 {
@@ -9,6 +11,8 @@ enum Phase
 
 class Program
 {
+    private static readonly SoundPlayer AlarmPlayer = new("alarm.wav");
+    
     private static Phase CurrentPhase = Phase.Focus;
     private static int SecondsLeft = FocusDuration;
     private static bool Running = false;
@@ -39,6 +43,6 @@ class Program
 
     private static void PlayAlarm()
     {
-        
+        AlarmPlayer.Play();
     }
 }
